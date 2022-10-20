@@ -28,9 +28,6 @@ Route::post('/auth/register', [App\Http\Controllers\Api\AuthController::class, '
 Route::post('/auth/login', [App\Http\Controllers\Api\AuthController::class, 'loginUser'])->name('auth/login');
 
 
-Route::get('/login', [App\Http\Controllers\Api\AuthController::class, 'index'])->name('login');
-Route::get('/register', [App\Http\Controllers\Api\AuthController::class, 'register'])->name('register');
-
 
 //////////////////////Employee/////////////////////////////////
 Route::apiResource('employee', EmployeeController::class);

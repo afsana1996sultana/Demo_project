@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>DemoProject</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{asset('style.css')}}">
 </head>
@@ -83,8 +84,6 @@
 			<img src="" class="img img-responsive img-circle center-block"/>
 			<h1 class="logo-caption"><span class="tweak">Demo</span>Project</h1>
 		</div><!-- /.logo -->
-        <form method="POST" action="">
-          @csrf
             <div class="controls">
                 <input type="text" class="form-control radius-30 ps-5" id="name" name="name" placeholder="Name"/><br>
 
@@ -92,9 +91,8 @@
               
                 <input type="password" class="form-control radius-30 ps-5" name="password" id="password" placeholder="Password" /><br>
             
-                <button type="submit" class="btn btn-default btn-block btn-custom">Register</button>             
+                <button id="reg_btn" type="button" class="btn btn-default btn-block btn-custom">Register</button>             
             </div>
-        </form>
 	</div>
 </div>
 <div id="particles-js"></div>
@@ -103,3 +101,33 @@
 <script src="{{asset('script.js')}}"></script>
 </body>
 </html>
+<script>
+       
+    $("#reg_btn").click(function(){
+
+      // console.log('{{ csrf_token() }}');
+      $.ajax({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: "{{route('auth/register')}}", 
+        datatype : "application/json",      
+        type: "POST",
+        data: {
+            name: $('#name').val(),
+            email: $('#email').val(),
+          password: $('#password').val()
+        },
+        success: function( response ) {
+        //   console.log(JSON.stringify(response.status));
+          location.replace(`{{url('login')}}`);
+        },
+        error : function(error) {
+        //   console.log(error.responseJSON);
+          alert("The email you're using has already been taken!");
+          location.replace(`{{route('register')}}`);
+        },
+       });
+    });
+    
+</script>

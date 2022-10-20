@@ -43,15 +43,21 @@
         headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: "{{route('auth/login')}}",       
+        url: "{{route('auth/login')}}", 
+        datatype : "application/json",      
         type: "POST",
         data: {
           email: $('#email').val(),
           password: $('#password').val()
         },
         success: function( response ) {
-          console.log(response);
-        }
+          // console.log(JSON.stringify(response.status));
+          location.replace(`{{url('employee')}}`);
+        },
+        error : function(error) {
+          // console.log(error.responseJSON.status);
+          location.replace(`{{route('login')}}`);
+        },
        });
     });
     
