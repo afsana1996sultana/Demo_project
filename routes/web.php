@@ -17,5 +17,6 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])->name('logout');
 Route::get('/login', [App\Http\Controllers\Api\AuthController::class, 'index'])->name('login');
 Route::get('/register', [App\Http\Controllers\Api\AuthController::class, 'register'])->name('register');

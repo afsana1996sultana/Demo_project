@@ -18,6 +18,12 @@ class AuthController extends Controller
     }
 
 
+    public function logout(Request $request)
+    {
+        return view("auth.login");
+    }
+
+
     public function register(Request $request)
     {
 

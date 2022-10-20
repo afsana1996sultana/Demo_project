@@ -11,6 +11,9 @@
 </head>
 <body style="padding-top:50px; margin-left:30px; margin-right:30px;">
 <a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add_employees" style="margin-bottom:10px;"><i class="fa fa-plus"></i>Add Employee</a> 
+<button type="button" id="logout_btn" class="btn btn-danger" style="margin-bottom:10px; padding-top:10px; padding-bottom:10px;"><i class="fas fa-power-off">&nbsp;Logout</i></button>
+
+
     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
